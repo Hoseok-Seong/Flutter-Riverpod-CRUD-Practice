@@ -5,8 +5,8 @@ import 'package:http_riverpod_app/controller/post_controller.dart';
 import 'package:http_riverpod_app/model/post/post.dart';
 import 'package:http_riverpod_app/view/pages/post/home/post_home_page_view_model.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+class PostHomePage extends ConsumerWidget {
+  const PostHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +24,25 @@ class HomePage extends ConsumerWidget {
               pc.findPosts();
             },
             child: Text("페이지로드"),
-          )
+          ),
+          ElevatedButton(
+            onPressed: () {
+              pc.addPost("제목4");
+            },
+            child: Text("한 건 추가"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              pc.removePost(1);
+            },
+            child: Text("한 건 삭제"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              pc.updatePost(Post(id: 2, title: "하하"));
+            },
+            child: Text("한 건 수정"),
+          ),
         ],
       ),
     );

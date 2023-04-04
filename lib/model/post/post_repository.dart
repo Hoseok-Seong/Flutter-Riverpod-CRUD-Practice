@@ -21,7 +21,19 @@ class PostRepository {
     });
   }
 
-  Future<void>? save() {
-    return null;
+  Future<Post> save(String title) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return Post(id: 4, title: "제목4");
+    });
+  }
+
+  Future<void> delete(int id) {
+    return Future.delayed(Duration(seconds: 1));
+  }
+
+  Future<Post> update(Post post) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return post;
+    });
   }
 }

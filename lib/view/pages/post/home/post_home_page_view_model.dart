@@ -14,6 +14,27 @@ class PostHomePageViewModel extends StateNotifier<PostHomePageModel?>{
   void init(List<Post> postDtoList) {
     state = PostHomePageModel(posts: postDtoList);
   }
+
+  void add(Post post) {
+    List<Post> posts = state!.posts;
+    // posts.add(post); // 이 방법도 가능.
+    // 전개 연산자 ...
+    List<Post> newPosts = [...posts, post]; // 추가, 삭제, 수정, 검색
+    state = PostHomePageModel(posts: newPosts); // 레퍼런스가 달라지면 가능(값이 동일해도 다시 그린다)
+  }
+
+  void remove(int id) {
+    List<Post> posts = state!.posts;
+    // 검색과 삭제할 때 사용.
+    List<Post> newPosts = posts.where((e) => e.id != id).toList();
+    state = PostHomePageModel(posts: newPosts);
+  }
+
+  void update(Post post) {
+    List<Post> posts = state!.posts;
+    List<Post> newPosts = posts.map((e) => e.id == post.id ? post : e).toList();
+    state = PostHomePageModel(posts: newPosts);
+  }
 }
 
 // 창고 데이터, DTO에서 Mapping
